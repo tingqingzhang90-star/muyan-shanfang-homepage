@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>木言山房 · 实木家具定制</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%236E4F30'/%3E%3Cpath d='M9 11h14M9 16h14M9 21h9' stroke='%23F5F0E7' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap">
+<style>
+:root{
+  --paper:#F5F0E7;
+  --card:#FFFFFF;
+  --ink:#262015;
+  --ink-soft:#6E6352;
+  --ink-faint:#A29785;
+  --wood:#8A6642;
+  --wood-deep:#6B4C2D;
+  --line:#E5DDCC;
+  --verify:#466E8A;
+  --like:#C0564A;
+  --serif:"Noto Serif SC",Georgia,"Songti SC",serif;
+  --sans:"Noto Sans SC",-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:auto;}
+body{
+  font-family:var(--sans);
+  background:#EAE2D3;
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+}
+.phone{
+  position:relative;
+  max-width:430px;
+  margin:0 auto;
+  background:var(--paper);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+@media (min-width:480px){
+  body{padding:28px 0;}
+  .phone{min-height:calc(100vh - 56px);border-radius:26px;box-shadow:0 24px 60px -18px rgba(60,44,24,.35),0 4px 14px rgba(60,44,24,.12);}
+}
+
+/* ===== 顶部悬浮导航 ===== */
+.topbar{
+  position:sticky;top:0;z-index:60;
+  height:48px;display:flex;align-items:center;gap:10px;
+  padding:0 12px;
+  color:#fff;
+  transition:background .3s ease,color .3s ease,box-shadow .3s ease;
+}
+.topbar.solid{
+  background:rgba(245,240,231,.94);
+  backdrop-filter:blur(10px);
+  color:var(--ink);
+  box-shadow:0 1px 0 var(--line);
+}
+.tb-btn{width:36px;height:36px;border:none;background:none;color:inherit;display:flex;align-items:center;justify-content:center;border-radius:50%;cursor:pointer;}
+.tb-title{font-family:var(--serif);font-size:16px;font-weight:600;opacity:0;transform:translateY(4px);transition:all .3s ease;white-space:nowrap;overflow:hidden;}
+.topbar.solid .tb-title{opacity:1;transform:translateY(0);}
+.tb-spacer{flex:1;}
+
+/* ===== 门头图 ===== */
+.hero{position:relative;height:218px;margin-top:-48px;}
+.hero img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;}
+.hero::after{
+  content:"";position:absolute;left:0;right:0;bottom:-1px;height:96px;
+  background:linear-gradient(to bottom,rgba(245,240,231,0) 0%,var(--paper) 92%);
+}
+.hero-badge{
+  position:absolute;top:60px;left:16px;z-index:2;
+  display:flex;align-items:center;gap:7px;
+  background:rgba(30,24,16,.42);backdrop-filter:blur(6px);
+  color:#F8F2E6;font-size:11.5px;letter-spacing:.5px;
+  padding:5px 11px;border-radius:20px;
+}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:#8FB98A;}
+
+/* ===== 资料区 ===== */
+.profile{position:relative;padding:0 16px;margin-top:-44px;z-index:3;}
+.avatar{
+  width:82px;height:82px;border-radius:50%;
+  border:4px solid var(--paper);
+  object-fit:cover;display:block;
+  box-shadow:0 6px 18px -6px rgba(60,44,24,.4);
+  background:#E9E1D2;
+}
+.name-row{display:flex;align-items:center;gap:8px;margin-top:12px;}
+.name-row h1{font-family:var(--serif);font-size:22px;font-weight:700;letter-spacing:1px;}
+.vbadge{
+  width:19px;height:19px;border-radius:50%;flex:none;
+  background:var(--verify);display:flex;align-items:center;justify-content:center;
+}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px;}
+.chip{
+  font-size:11.5px;color:var(--wood-deep);
+  background:#EFE7D8;border:1px solid #E3D8C2;
+  padding:3.5px 10px;border-radius:20px;
+}
+.addr{
+  display:flex;align-items:center;gap:6px;
+  margin:4px 0 0;padding:10px 0;font-size:13.5px;color:var(--ink-soft);
+  width:100%;border:none;background:none;text-align:left;
+  font-family:var(--sans);cursor:pointer;line-height:1.5;
+}
+.addr svg{flex:none;}
+.addr .go{margin-left:auto;flex:none;color:var(--ink-faint);}
+.bio{
+  margin-top:8px;font-size:14px;line-height:1.75;color:var(--ink-soft);
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.bio.expanded{-webkit-line-clamp:unset;display:block;}
+.bio-toggle{
+  border:none;background:none;color:var(--wood);font-size:12.5px;
+  font-family:var(--sans);padding:11px 10px 11px 0;margin-left:-10px;cursor:pointer;display:none;
+}
+.stats{display:flex;gap:26px;margin-top:15px;}
+.stat .num{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--ink);}
+.stat .lab{font-size:11.5px;color:var(--ink-faint);margin-left:5px;}
+
+/* ===== 联系按钮 ===== */
+.actions{display:flex;gap:10px;margin-top:16px;}
+.act{
+  flex:1;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;gap:8px;
+  font-size:14.5px;font-weight:500;font-family:var(--sans);
+  cursor:pointer;text-decoration:none;transition:transform .15s ease,box-shadow .15s ease;
+}
+.act:active{transform:scale(.97);}
+.act-call{background:var(--ink);color:#F6F0E4;box-shadow:0 8px 18px -8px rgba(38,32,21,.55);}
+.act-wx{background:var(--card);color:var(--wood-deep);border:1.5px solid var(--wood);}
+
+/* ===== 分类标签 ===== */
+.tabs{
+  position:sticky;top:48px;z-index:50;
+  display:flex;align-items:center;gap:2px;
+  background:var(--paper);padding:0 10px;
+  height:48px;overflow-x:auto;scrollbar-width:none;
+  box-shadow:0 1px 0 var(--line);
+}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{
+  position:relative;height:48px;display:flex;align-items:center;
+  padding:0 13px;font-size:14.5px;color:var(--ink-faint);
+  white-space:nowrap;cursor:pointer;border:none;background:none;font-family:var(--sans);
+  transition:color .25s ease;
+}
+.tab.active{color:var(--wood-deep);font-family:var(--serif);font-weight:700;font-size:15.5px;}
+.tab .cnt{font-size:10.5px;margin-left:3px;color:var(--ink-faint);font-family:var(--sans);}
+.indicator{
+  position:absolute;bottom:7px;height:3px;width:22px;border-radius:2px;
+  background:var(--wood);
+  transition:transform .3s cubic-bezier(.4,0,.2,1),width .3s cubic-bezier(.4,0,.2,1);
+}
+
+/* ===== 产品网格 ===== */
+.grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:10px;padding:10px 12px 18px;
+}
+.card{
+  background:var(--card);border-radius:13px;overflow:hidden;
+  cursor:pointer;
+  transition:transform .16s ease,box-shadow .16s ease;
+  animation:rise .42s cubic-bezier(.25,.7,.3,1) both;
+}
+.card:active{transform:scale(.97);}
+.card-img{aspect-ratio:1/1;background:#F1EADE;overflow:hidden;}
+.card-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.card-body{padding:9px 11px 11px;}
+.card-title{
+  font-family:var(--serif);font-size:14px;font-weight:700;color:var(--ink);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:.3px;
+}
+.card-meta{display:flex;align-items:center;justify-content:space-between;margin-top:7px;}
+.card-loc{display:flex;align-items:center;gap:3px;font-size:11px;color:var(--ink-faint);white-space:nowrap;overflow:hidden;}
+.like-btn{display:flex;align-items:center;gap:4px;border:none;background:none;cursor:pointer;padding:10px 2px 10px 6px;margin:-10px -2px -10px 0;flex:none;}
+.like-btn .heart{transition:transform .2s ease;}
+.like-btn .lnum{font-size:11px;color:var(--ink-faint);font-family:var(--sans);}
+.like-btn.liked .heart{color:var(--like);fill:var(--like);stroke:var(--like);animation:pop .35s cubic-bezier(.3,1.6,.5,1);}
+.like-btn.liked .lnum{color:var(--like);}
+.foot{text-align:center;padding:18px 0 30px;font-size:11px;color:var(--ink-faint);letter-spacing:1px;}
+.foot::before,.foot::after{content:"——";margin:0 8px;color:var(--line);}
+
+/* ===== Toast ===== */
+.toast{
+  position:fixed;z-index:99;left:50%;bottom:84px;
+  transform:translateX(-50%) translateY(14px);
+  background:rgba(33,27,18,.93);color:#F6F0E4;
+  font-size:13px;padding:10px 18px;border-radius:22px;
+  opacity:0;pointer-events:none;
+  transition:opacity .25s ease,transform .25s ease;
+  max-width:80%;text-align:center;white-space:nowrap;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+@keyframes rise{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+@keyframes pop{0%{transform:scale(1);}45%{transform:scale(1.35);}100%{transform:scale(1);}}
+@media (prefers-reduced-motion:reduce){
+  .card{animation:none;}
+  *{transition-duration:.01ms !important;}
+}
+</style>
+</head>
+<body>
+<div class="phone" id="phone">
+
+  <!-- ===== 顶部导航 ===== -->
+  <header class="topbar" id="topbar">
+    <button class="tb-btn" aria-label="返回" onclick="showToast('演示页面，暂无上级页面')">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <span class="tb-title">木言山房 · 实木家具</span>
+    <span class="tb-spacer"></span>
+    <button class="tb-btn" aria-label="分享" onclick="showToast('分享链接已生成（演示）')">
+      <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M16 6l-4-4-4 4"/><path d="M12 2v13"/></svg>
+    </button>
+  </header>
+
+  <!-- ===== 门头图 ===== -->
+  <section class="hero">
+    <img src="assets/cover.jpg" alt="木言山房木工车间">
+    <span class="hero-badge"><span class="dot"></span>营业中 · 可预约看厂</span>
+  </section>
+
+  <!-- ===== 厂家资料 ===== -->
+  <section class="profile">
+    <img class="avatar" src="assets/avatar.jpg" alt="木言山房主理人">
+    <div class="name-row">
+      <h1>木言山房</h1>
+      <span class="vbadge" title="企业认证">
+        <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 8"/></svg>
+      </span>
+    </div>
+    <div class="chips">
+      <span class="chip">源头工厂</span>
+      <span class="chip">9年老店</span>
+      <span class="chip">榫卯工艺</span>
+      <span class="chip">支持私人定制</span>
+    </div>
+    <button class="addr" onclick="showToast('正在打开地图导航（演示）')">
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.8-6.5-10.3a6.5 6.5 0 0 1 13 0C18.5 15.2 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.3"/></svg>
+      <span>四川省南充市高坪区航空港家具产业园 12 栋</span>
+      <svg class="go" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+    </button>
+    <p class="bio" id="bio">木言山房，扎根南充的实木家具工坊。九年专注黑胡桃、白橡木家具的榫卯制作，从原木开料、手工打磨到天然木油涂装，每一件都在自家车间完成。支持尺寸、木种与款式的私人定制，全国可发货，南充及周边可上门量尺安装。我们相信，好家具是木头写给生活的一封长信。</p>
+    <button class="bio-toggle" id="bioToggle" onclick="toggleBio()">展开</button>
+    <div class="stats">
+      <span class="stat"><span class="num">286</span><span class="lab">作品</span></span>
+      <span class="stat"><span class="num">12.6w</span><span class="lab">获赞</span></span>
+      <span class="stat"><span class="num">8923</span><span class="lab">粉丝</span></span>
+    </div>
+    <div class="actions">
+      <a class="act act-call" href="tel:1389072341">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h3l1.8 4.5-2.3 1.4a11.5 11.5 0 0 0 6.6 6.6l1.4-2.3L20 16v3a1.8 1.8 0 0 1-2 1.7A16 16 0 0 1 3.3 6 1.8 1.8 0 0 1 5 4z"/></svg>
+        拨打电话
+      </a>
+      <button class="act act-wx" onclick="copyWechat()">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.8a8 8 0 0 1-11.6 7.1L4 20.5l1.8-4A8 8 0 1 1 21 11.8z"/><path d="M8.5 11h.01M14.5 11h.01"/></svg>
+        复制微信
+      </button>
+    </div>
+  </section>
+
+  <!-- ===== 产品分类 ===== -->
+  <nav class="tabs" id="tabs">
+    <button class="tab active" data-cat="all">全部<span class="cnt">18</span></button>
+    <button class="tab" data-cat="living">客厅<span class="cnt">5</span></button>
+    <button class="tab" data-cat="bedroom">卧室<span class="cnt">4</span></button>
+    <button class="tab" data-cat="dining">餐厅<span class="cnt">5</span></button>
+    <button class="tab" data-cat="study">书房<span class="cnt">4</span></button>
+    <span class="indicator" id="indicator"></span>
+  </nav>
+
+  <!-- ===== 产品网格（9 行 × 2 列） ===== -->
+  <main class="grid" id="grid">
+    <article class="card" data-cat="living" onclick="cardTap(event,'白橡木三人布艺沙发')">
+      <div class="card-img"><img src="assets/p01.jpg" alt="白橡木三人布艺沙发" loading="lazy"></div>
+      <div class="card-body">
+        <h3 class="card-title">白橡木三人布艺沙发</h3>
+        <div class="card-meta">
+          <span class="card-loc"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.8-6.5-10.3a6.5 6.5 0 0 1 13 0C18.5 15.2 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.3"/></svg>南充·高坪工厂</span>
+          <button class="like-btn" onclick="toggleLike(event,this)"><svg class="heart" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5s-7.2-4.8-9.4-9.2A4.6 4.6 0 0 1 12 6.8a4.6 4.6 0 0 1 9.4 4.5C19.2 15.7 12 20.5 12 20.5z"/></svg><span class="lnum">2341</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-cat="living" onclick="cardTap(event,'胡桃木双层茶几')">
+      <div class="card-img"><img src="assets/p02.jpg" alt="胡桃木双层茶几" loading="lazy"></div>
+      <div class="card-body">
+        <h3 class="card-title">胡桃木双层茶几</h3>
+        <div class="card-meta">
+          <span class="card-loc"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.8-6.5-10.3a6.5 6.5 0 0 1 13 0C18.5 15.2 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.3"/></svg>南充·高坪工厂</span>
+          <button class="like-btn" onclick="toggleLike(event,this)"><svg class="heart" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5s-7.2-4.8-9.4-9.2A4.6 4.6 0 0 1 12 6.8a4.6 4.6 0 0 1 9.4 4.5C19.2 15.7 12 20.5 12 20.5z"/></svg><span class="lnum">1876</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-cat="living" onclick="cardTap(event,'白橡木低矮电视柜')">
+      <div class="card-img"><img src="assets/p03.jpg" alt="白橡木低矮电视柜" loading="lazy"></div>
+      <div class="card-body">
+        <h3 class="card-title">白橡木低矮电视柜</h3>
+        <div class="card-meta">
+          <span class="card-loc"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.8-6.5-10.3a6.5 6.5 0 0 1 13 0C18.5 15.2 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.3"/></svg>南充·顺庆展厅</span>
+          <button class="like-btn" onclick="toggleLike(event,this)"><svg class="heart" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5s-7.2-4.8-9.4-9.2A4.6 4.6 0 0 1 12 6.8a4.6 4.6 0 0 1 9.4 4.5C19.2 15.7 12 20.5 12 20.5z"/></svg><span class="lnum">1293</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-cat="living" onclick="cardTap(event,'胡桃木布艺休闲椅')">
+      <div class="card-img"><img src="assets/p04.jpg" alt="胡桃木布艺休闲椅" loading="lazy"></div>
+      <div class="card-body">
+        <h3 class="card-title">胡桃木布艺休闲椅</h3>
+        <div class="card-meta">
+          <span class="card-loc"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.8-6.5-10.3a6.5 6.5 0 0 1 13 0C18.5 15.2 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.3"/></svg>南充·顺庆展厅</span>
+          <button class="like-btn" onclick="toggleLike(event,this)"><svg class="heart" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5s-7.2-4.8-9.4-9.2A4.6 4.6 0 0 1 12 6.8a4.6 4.6 0 0 1 9.4 4.5C19.2 15.7 12 20.5 12 20.5z"/></svg><span class="lnum">3422</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-cat="living" onclick="cardTap(event,'黑胡桃圆形小边几')">
+      <div class="card-img"><img src="assets/p05.jpg" alt="黑胡桃圆形小边几" loading="lazy"></div>
+      <div class="card-body">
+        <h3 class="card-title">黑胡桃圆形小边几</h3>
+        <div class="card-meta">
+          <span class="card-loc"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.8-6.5-10.3a6.5 6.5 0 0 1 13 0C18.5 15.2 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.3"/></svg>南充·高坪工厂</span>
+          <button class="like-btn" onclick="toggleLike(event,this)"><svg class="heart" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5s-7.2-4.8-9.4-9.2A4.6 4.6 0 0 1 12 6.8a4.6 4.6 0 0 1 9.4 4.5C19.2 15.7 12 20.5 12 20.5z"/></svg><span class="lnum">986</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-cat="bedroom" onclick="cardTap(event,'黑胡桃木自然边双人床')">
+      <div class="card-img"><img src="assets/p06.jpg" alt="黑胡桃木自然边双人床" loading="lazy"></div>
+      <div class="card-body">
+        <h3 class="card-title">黑胡桃木自然边双人床</h3>
+        <div class="card-meta">
+          <span class="card-loc"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.8-6.5-10.3a6.5 6.5 0 0 1 13 0C18.5 15.2 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.3"/></svg>南充·高坪工厂</span>
+          <button class="like-btn" onclick="toggleLike(event,this)"><svg class="heart" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5s-7.2-4.8-9.4-9.2A4.6 4.6 0 0 1 12 6.8a4.6 4.6 0 0 1 9.4 4.5C19.2 15.7 12 20.5 12 20.5z"/></svg><span class="lnum">4521</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-cat="bedroom" onclick="cardTap(event,'白橡木双门衣柜')">
+      <div class="card-img"><img src="assets/p07.jpg" alt="白橡木双门衣柜" loading="lazy"></div>
+      <div class="card-body">
+        <h3 class="card-title">白橡木双门衣柜</h3>
+        <div class="card-meta">
+          <span class="card-loc"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.8-6.5-10.3a6.5 6.5 0 0 1 13 0C18.5 15.2 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.3"/></svg>南充·高坪工厂</span>
+          <button class="like-btn" onclick="toggleLike(event,this)"><svg class="heart" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5s-7.2-4.8-9.4-9.2A4.6 4.6 0 0 1 12 6.8a4.6 4.6 0 0 1 9.4 4.5C19.2 15.7 12 20.5 12 20.5z"/></svg><span class="lnum">1654</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-cat="bedroom" onclick="cardTap(event,'胡桃木单抽床头柜')">
+      <div class="card-img"><img src="assets/p08.jpg" alt="胡桃木单抽床头柜" loading="lazy"></div>
+      <div class="card-body">
+        <h3 class="card-title">胡桃木单抽床头柜</h3>
+        <div class="card-meta">
+          <span class="card-loc"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.8-6.5-10.3a6.5 6.5 0 0 1 13 0C18.5 15.2 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.3"/></svg>南充·高坪工厂</span>
+          <button class="like-btn" onclick="toggleLike(event,this)"><svg class="heart" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5s-7.2-4.8-9.4-9.2A4.6 4.6 0 0 1 12 6.8a4.6 4.6 0 0 1 9.4 4.5C19.2 15.7 12 20.5 12 20.5z"/></svg><span class="lnum">743</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-cat="bedroom" onclick="cardTap(event,'白橡木五斗储物柜')">
+      <div class="card-img"><img src="assets/p09.jpg" alt="白橡木五斗储物柜" loading="lazy"></div>
+      <div class="card-body">
+        <h3 class="card-title">白橡木五斗储物柜</h3>
+        <div class="card-meta">
+          <span class="card-loc"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.8-6.5-10.3a6.5 6.5 0 0 1 13 0C18.5 15.2 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.3"/></svg>南充·顺庆展厅</span>
+          <button class="like-btn" onclick="toggleLike(event,this)"><svg class="heart" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5s-7.2-4.8-9.4-9.2A4.6 4.6 0 0 1 12 6.8a4.6 4.6 0 0 1 9.4 4.5C19.2 15.7 12 20.5 12 20.5z"/></svg><span class="lnum">1102</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-cat="dining" onclick="cardTap(event,'白橡木长方形餐桌')">
+      <div class="card-img"><img src="assets/p10.jpg" alt="白橡木长方形餐桌" loading="lazy"></div>
+      <div class="card-body">
+        <h3 class="card-title">白橡木长方形餐桌</h3>
+        <div class="card-meta">
+          <span class="card-loc"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.8-6.5-10.3a6.5 6.5 0 0 1 13 0C18.5 15.2 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.3"/></svg>南充·高坪工厂</span>
+          <button class="like-btn" onclick="toggleLike(event,this)"><svg class="heart" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5s-7.2-4.8-9.4-9.2A4.6 4.6 0 0 1 12 6.8a4.6 4.6 0 0 1 9.4 4.5C19.2 15.7 12 20.5 12 20.5z"/></svg><span class="lnum">2876</span></button>
+        </div>
+      </div>
+    </article>
+    <article class="card" data-cat="dining" onclick="cardTap(event,'胡桃木牛角餐椅')">
+      <div class="card-img"><img src="assets/p11.jpg" alt="胡桃木牛角餐椅" loading="lazy"></div>
+      <div class="card-body">
+        <h3 class="card-title">胡桃木牛角餐椅</h3>
+        <div class="card-meta">
+          <span class="card-loc"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.8-6.5-10.3a6.5 6.5 0 0 1 13 0C18.5 15.2 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.3"/></svg>南充·顺庆展厅</span>
+          <button class="like-btn" onclick="toggleLike(event,this)"><svg class="heart" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5s-7.2-4.8-9.4-9.2A4.6 4.6 0 0 1 12 6.8a4.6 4.6 0 0 1 9.4 4.5C19.2 15.7 12 20.5 12 20.5z"/></svg><span class="lnum">3214</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-cat="dining" onclick="cardTap(event,'白橡木温莎椅')">
+      <div class="card-img"><img src="assets/p12.jpg" alt="白橡木温莎椅" loading="lazy"></div>
+      <div class="card-body">
+        <h3 class="card-title">白橡木温莎椅</h3>
+        <div class="card-meta">
+          <span class="card-loc"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.8-6.5-10.3a6.5 6.5 0 0 1 13 0C18.5 15.2 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.3"/></svg>南充·高坪工厂</span>
+          <button class="like-btn" onclick="toggleLike(event,this)"><svg class="heart" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5s-7.2-4.8-9.4-9.2A4.6 4.6 0 0 1 12 6.8a4.6 4.6 0 0 1 9.4 4.5C19.2 15.7 12 20.5 12 20.5z"/></svg><span class="lnum">1567</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-cat="dining" onclick="cardTap(event,'胡桃木餐边柜')">
+      <div class="card-img"><img src="assets/p13.jpg" alt="胡桃木餐边柜" loading="lazy"></div>
+      <div class="card-body">
+        <h3 class="card-title">胡桃木餐边柜</h3>
+        <div class="card-meta">
+          <span class="card-loc"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.8-6.5-10.3a6.5 6.5 0 0 1 13 0C18.5 15.2 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.3"/></svg>南充·高坪工厂</span>
+          <button class="like-btn" onclick="toggleLike(event,this)"><svg class="heart" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5s-7.2-4.8-9.4-9.2A4.6 4.6 0 0 1 12 6.8a4.6 4.6 0 0 1 9.4 4.5C19.2 15.7 12 20.5 12 20.5z"/></svg><span class="lnum">1342</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-cat="dining" onclick="cardTap(event,'黑胡桃玻璃门酒柜')">
+      <div class="card-img"><img src="assets/p14.jpg" alt="黑胡桃玻璃门酒柜" loading="lazy"></div>
+      <div class="card-body">
+        <h3 class="card-title">黑胡桃玻璃门酒柜</h3>
+        <div class="card-meta">
+          <span class="card-loc"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.8-6.5-10.3a6.5 6.5 0 0 1 13 0C18.5 15.2 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.3"/></svg>南充·顺庆展厅</span>
+          <button class="like-btn" onclick="toggleLike(event,this)"><svg class="heart" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5s-7.2-4.8-9.4-9.2A4.6 4.6 0 0 1 12 6.8a4.6 4.6 0 0 1 9.4 4.5C19.2 15.7 12 20.5 12 20.5z"/></svg><span class="lnum">2098</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-cat="study" onclick="cardTap(event,'白橡木升降书桌')">
+      <div class="card-img"><img src="assets/p15.jpg" alt="白橡木升降书桌" loading="lazy"></div>
+      <div class="card-body">
+        <h3 class="card-title">白橡木升降书桌</h3>
+        <div class="card-meta">
+          <span class="card-loc"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.8-6.5-10.3a6.5 6.5 0 0 1 13 0C18.5 15.2 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.3"/></svg>南充·高坪工厂</span>
+          <button class="like-btn" onclick="toggleLike(event,this)"><svg class="heart" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5s-7.2-4.8-9.4-9.2A4.6 4.6 0 0 1 12 6.8a4.6 4.6 0 0 1 9.4 4.5C19.2 15.7 12 20.5 12 20.5z"/></svg><span class="lnum">2665</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-cat="study" onclick="cardTap(event,'白橡木带门书柜')">
+      <div class="card-img"><img src="assets/p16.jpg" alt="白橡木带门书柜" loading="lazy"></div>
+      <div class="card-body">
+        <h3 class="card-title">白橡木带门书柜</h3>
+        <div class="card-meta">
+          <span class="card-loc"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.8-6.5-10.3a6.5 6.5 0 0 1 13 0C18.5 15.2 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.3"/></svg>南充·高坪工厂</span>
+          <button class="like-btn" onclick="toggleLike(event,this)"><svg class="heart" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5s-7.2-4.8-9.4-9.2A4.6 4.6 0 0 1 12 6.8a4.6 4.6 0 0 1 9.4 4.5C19.2 15.7 12 20.5 12 20.5z"/></svg><span class="lnum">854</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-cat="study" onclick="cardTap(event,'胡桃木实木办公椅')">
+      <div class="card-img"><img src="assets/p17.jpg" alt="胡桃木实木办公椅" loading="lazy"></div>
+      <div class="card-body">
+        <h3 class="card-title">胡桃木实木办公椅</h3>
+        <div class="card-meta">
+          <span class="card-loc"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.8-6.5-10.3a6.5 6.5 0 0 1 13 0C18.5 15.2 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.3"/></svg>南充·顺庆展厅</span>
+          <button class="like-btn" onclick="toggleLike(event,this)"><svg class="heart" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5s-7.2-4.8-9.4-9.2A4.6 4.6 0 0 1 12 6.8a4.6 4.6 0 0 1 9.4 4.5C19.2 15.7 12 20.5 12 20.5z"/></svg><span class="lnum">1788</span></button>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-cat="study" onclick="cardTap(event,'黑胡桃落地书架')">
+      <div class="card-img"><img src="assets/p18.jpg" alt="黑胡桃落地书架" loading="lazy"></div>
+      <div class="card-body">
+        <h3 class="card-title">黑胡桃落地书架</h3>
+        <div class="card-meta">
+          <span class="card-loc"><svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6.5-5.8-6.5-10.3a6.5 6.5 0 0 1 13 0C18.5 15.2 12 21 12 21z"/><circle cx="12" cy="10.5" r="2.3"/></svg>南充·顺庆展厅</span>
+          <button class="like-btn" onclick="toggleLike(event,this)"><svg class="heart" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5s-7.2-4.8-9.4-9.2A4.6 4.6 0 0 1 12 6.8a4.6 4.6 0 0 1 9.4 4.5C19.2 15.7 12 20.5 12 20.5z"/></svg><span class="lnum">1432</span></button>
+        </div>
+      </div>
+    </article>
+
+  </main>
+
+  <p class="foot">木言山房 · 一木一榫</p>
+</div>
+
+<div class="toast" id="toast"></div>
+<script>
+(function(){
+  "use strict";
+  var toastEl = document.getElementById('toast');
+  var toastTimer = null;
+
+  /* ===== Toast（桌面端自动对齐手机框中心） ===== */
+  window.showToast = function(msg){
+    var phone = document.getElementById('phone');
+    var r = phone.getBoundingClientRect();
+    toastEl.style.left = (r.left + r.width/2) + 'px';
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toastEl.classList.remove('show'); }, 2000);
+  };
+
+  /* ===== 简介展开 ===== */
+  var bio = document.getElementById('bio');
+  var bioToggle = document.getElementById('bioToggle');
+  setTimeout(function(){
+    if (bio.scrollHeight - bio.clientHeight > 4) bioToggle.style.display = 'inline-block';
+  }, 300);
+  window.toggleBio = function(){
+    var open = bio.classList.toggle('expanded');
+    bioToggle.textContent = open ? '收起' : '展开';
+  };
+
+  /* ===== 复制微信 ===== */
+  var WX_ID = 'muyan2017';
+  function legacyCopy(text){
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch(e){ ok = false; }
+    document.body.removeChild(ta);
+    return ok;
+  }
+  window.copyWechat = function(){
+    var done = function(){ showToast('微信号 ' + WX_ID + ' 已复制，快去添加吧'); };
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(WX_ID).then(done, function(){
+        if (legacyCopy(WX_ID)) done(); else showToast('复制失败，请手动记录：' + WX_ID);
+      });
+    } else {
+      if (legacyCopy(WX_ID)) done(); else showToast('复制失败，请手动记录：' + WX_ID);
+    }
+  };
+
+  /* ===== 点赞 ===== */
+  window.toggleLike = function(e, btn){
+    e.stopPropagation();
+    var numEl = btn.querySelector('.lnum');
+    var liked = btn.classList.toggle('liked');
+    var n = parseInt(numEl.textContent, 10) || 0;
+    numEl.textContent = String(Math.max(0, n + (liked ? 1 : -1)));
+  };
+
+  /* ===== 卡片点击 ===== */
+  window.cardTap = function(e, name){
+    if (e.target.closest('.like-btn')) return;
+    showToast('查看「' + name + '」详情（演示）');
+  };
+
+  /* ===== 分类切换 ===== */
+  var tabs = document.getElementById('tabs');
+  var indicator = document.getElementById('indicator');
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
+  var tabBtns = Array.prototype.slice.call(tabs.querySelectorAll('.tab'));
+
+  function moveIndicator(tab){
+    var center = tab.offsetLeft + tab.offsetWidth / 2;
+    indicator.style.transform = 'translateX(' + (center - 11) + 'px)';
+  }
+  function replayAnim(visible){
+    visible.forEach(function(c, i){
+      c.style.animation = 'none';
+      c.offsetHeight; /* 强制回流 */
+      c.style.animation = '';
+      c.style.animationDelay = Math.min(i, 9) * 0.045 + 's';
+    });
+  }
+  tabBtns.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      if (tab.classList.contains('active')) return;
+      tabBtns.forEach(function(t){ t.classList.remove('active'); });
+      tab.classList.add('active');
+      moveIndicator(tab);
+      var cat = tab.dataset.cat;
+      var visible = [];
+      cards.forEach(function(c){
+        var show = (cat === 'all' || c.dataset.cat === cat);
+        c.style.display = show ? '' : 'none';
+        if (show) visible.push(c);
+      });
+      replayAnim(visible);
+      try { tab.scrollIntoView({behavior:'smooth', inline:'center', block:'nearest'}); } catch(e){}
+    });
+  });
+  var active0 = tabs.querySelector('.tab.active');
+  requestAnimationFrame(function(){ moveIndicator(active0); });
+  window.addEventListener('resize', function(){ moveIndicator(tabs.querySelector('.tab.active')); });
+
+  /* ===== 顶部导航随滚动浮现 ===== */
+  var topbar = document.getElementById('topbar');
+  function onScroll(){
+    if (window.scrollY > 24) topbar.classList.add('solid');
+    else topbar.classList.remove('solid');
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+</script>
+</body>
+</html>
